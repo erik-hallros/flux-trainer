@@ -1,20 +1,15 @@
 from setuptools import setup, find_packages
 import os
 import subprocess
-from dotenv import load_dotenv
-from huggingface_hub import login, hf_hub_download
-
-if os.path.exists(".env"):
-    load_dotenv()
-
-HF_TOKEN = os.getenv('HF_TOKEN')
-login(token=HF_TOKEN)
 
 def install_requirements():
     if os.path.exists("requirements.txt"):
         subprocess.check_call([ "pip", "install", "--no-cache-dir", "-r", "requirements.txt" ])
 
 def fetch_models():
+    from huggingface_hub import login, hf_hub_download
+    HF_TOKEN = os.getenv('HF_TOKEN')
+    login(token=HF_TOKEN)
     os.makedirs("/home/user/app/src/models", exist_ok=True)
     hf_hub_download(repo_id="black-forest-labs/FLUX.1-dev", filename="ae.safetensors", local_dir="/home/user/app/src/models")
     hf_hub_download(repo_id="comfyanonymous/flux_text_encoders", filename="t5xxl_fp8_e4m3fn.safetensors", local_dir="/home/user/app/src/models")
@@ -44,7 +39,6 @@ setup(
     packages=find_packages(),
     install_requires=[
         "huggingface_hub==0.26.5",
-        "python-dotenv",
     ],
     cmdclass={"install": install},
 )
