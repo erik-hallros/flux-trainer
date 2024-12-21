@@ -9,8 +9,7 @@ def install_requirements():
 
 def fetch_models():
     from huggingface_hub import login, hf_hub_download
-    HF_TOKEN = os.getenv('HF_TOKEN')
-    login(token=HF_TOKEN)
+    login(token="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")
     os.makedirs("/home/user/app/src/models", exist_ok=True)
     hf_hub_download(repo_id="black-forest-labs/FLUX.1-dev", filename="ae.safetensors", local_dir="/home/user/app/src/models")
     hf_hub_download(repo_id="comfyanonymous/flux_text_encoders", filename="t5xxl_fp8_e4m3fn.safetensors", local_dir="/home/user/app/src/models")
