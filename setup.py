@@ -18,6 +18,7 @@ def fetch_models():
     hf_hub_download(repo_id="Kijai/flux-fp8", filename="flux1-dev-fp8.safetensors", local_dir="/home/user/app/src/models")
 
 def fetch_libraries():
+    os.makedirs("/home/user/app/src/", exist_ok=True)
     os.chdir("/home/user/app/src")
     git_download = ["git", "clone", "https://github.com/kohya-ss/sd-scripts.git", "-b", "sd3"]
     subprocess.run(git_download)
@@ -39,9 +40,9 @@ setup(
     packages=find_packages(),
     install_requires=[
         "huggingface_hub==0.26.5",
-		"pip",
-		"setuptools",
-		"wheel",
+        "pip",
+        "setuptools",
+        "wheel",
     ],
     cmdclass={"install": ChainInstall},
 )
