@@ -25,13 +25,12 @@ def fetch_libraries():
     subprocess.run(pip_install)
     os.chdir("/home/user/app")
 
-def chain_install():
-    install_requirements()
-    fetch_libraries()
-    fetch_models()
-
-def main():
-    install()
+class ChainInstall(install):
+    def run(self):
+        install_requirements()
+        fetch_libraries()
+        fetch_models()
+        install.run(self)
 
 setup(
     name="flux-trainer",
@@ -40,5 +39,5 @@ setup(
     install_requires=[
         "huggingface_hub==0.26.5",
     ],
-    cmdclass={"install": chain_install},
+    cmdclass={"install": ChainInstall},
 )
