@@ -25,7 +25,7 @@ def fetch_libraries():
     subprocess.run(pip_install)
     os.chdir("/home/user/app")
 
-def install():
+def chain_install():
     install_requirements()
     fetch_libraries()
     fetch_models()
@@ -40,5 +40,5 @@ setup(
     install_requires=[
         "huggingface_hub==0.26.5",
     ],
-    cmdclass={"install": install},
+    cmdclass={"install": chain_install},
 )
