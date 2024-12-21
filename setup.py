@@ -25,6 +25,9 @@ def fetch_libraries():
     subprocess.run(pip_install)
     os.chdir("/home/user/app")
 
+def install():
+	print("Environment setup complete.")
+
 class ChainInstall(install):
     def run(self):
         install_requirements()
