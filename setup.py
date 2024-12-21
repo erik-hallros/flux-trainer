@@ -26,7 +26,7 @@ def fetch_libraries():
     os.chdir("/home/user/app")
 
 def install():
-	print("Environment setup complete.")
+    print("Environment setup complete.")
 
 class ChainInstall(install):
     def run(self):
