@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from setuptools.command.install import install
 import os
 import subprocess
 
@@ -25,9 +26,6 @@ def fetch_libraries():
     subprocess.run(pip_install)
     os.chdir("/home/user/app")
 
-def install():
-    print("Environment setup complete.")
-
 class ChainInstall(install):
     def run(self):
         install_requirements()
@@ -41,6 +39,9 @@ setup(
     packages=find_packages(),
     install_requires=[
         "huggingface_hub==0.26.5",
+		"pip",
+		"setuptools",
+		"wheel",
     ],
     cmdclass={"install": ChainInstall},
 )
