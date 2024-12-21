@@ -1,2 +1,2 @@
-huggingface_hub==0.26.5
+huggingface_hub>=0.24.5
 python-dotenv
